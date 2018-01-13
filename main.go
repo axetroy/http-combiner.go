@@ -35,6 +35,11 @@ type Mapper map[string]*Response
 
 func main() {
   http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+
+    w.Header().Add("Access-Control-Allow-Origin", "*")
+    w.Header().Add("Access-Control-Allow-Credentials", "true")
+    w.Header().Add("Access-Control-Expose-Headers", "Content-Length")
+
     body, err := ioutil.ReadAll(r.Body)
     if err != nil {
       w.Write([]byte(err.Error()))
