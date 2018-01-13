@@ -2,23 +2,16 @@
 
 ![License](https://img.shields.io/badge/license-Apache-green.svg)
 
-## Usage
+## Try It out
 
 Copy and Paste into Chrome Dev Tool
 
 #### Concurrent
 
 ```javascript
-var xhr = new XMLHttpRequest();
-
-xhr.open("POST", "https://go-http-combiner.herokuapp.com");
-
-xhr.onreadystatechange = function(e) {
-  console.log(e);
-};
-
-xhr.send(
-  JSON.stringify({
+fetch("https://go-http-combiner.herokuapp.com",{
+  method: "POST",
+  body:JSON.stringify({
     "baidu.com": {
       method: "GET",
       url: "https://www.baidu.com"
@@ -32,22 +25,19 @@ xhr.send(
       url: "http://sina.com"
     }
   })
-);
+})
+.then(res=>res.json())
+.then(function(res){
+   console.log(res);
+})
 ```
 
 #### Series
 
 ```javascript
-var xhr = new XMLHttpRequest();
-
-xhr.open("POST", "https://go-http-combiner.herokuapp.com");
-
-xhr.onreadystatechange = function(e) {
-  console.log(e);
-};
-
-xhr.send(
-  JSON.stringify([
+fetch("https://go-http-combiner.herokuapp.com", {
+  method: "POST",
+  body: JSON.stringify([
     {
       method: "GET",
       url: "https://www.baidu.com"
@@ -61,7 +51,12 @@ xhr.send(
       url: "http://sina.com"
     }
   ])
-);
+})
+  .then(res => res.json())
+  .then(function(res) {
+    console.log(res);
+  });
+
 ```
 
 ## Contributing
