@@ -7,6 +7,7 @@ import (
   "encoding/json"
   "bytes"
   "strings"
+  "os"
 )
 
 type Request struct {
@@ -182,8 +183,6 @@ func main() {
           result[i].Header[key] = strings.Join(values, ";")
         }
 
-
-
         body, err := ioutil.ReadAll(res.Body)
         if err != nil {
           result[i] = nil
@@ -204,5 +203,8 @@ func main() {
     }
 
   })
-  log.Fatal(http.ListenAndServe(":8086", nil))
+
+  port := os.Getenv("PORT")
+
+  log.Fatal(http.ListenAndServe(":"+port, nil))
 }
