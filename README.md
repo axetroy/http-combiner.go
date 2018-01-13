@@ -4,7 +4,65 @@
 
 ## Usage
 
-TODO
+Copy and Paste into Chrome Dev Tool
+
+#### Concurrent
+
+```javascript
+var xhr = new XMLHttpRequest();
+
+xhr.open("POST", "https://go-http-combiner.herokuapp.com");
+
+xhr.onreadystatechange = function(e) {
+  console.log(e);
+};
+
+xhr.send(
+  JSON.stringify({
+    "baidu.com": {
+      method: "GET",
+      url: "https://www.baidu.com"
+    },
+    "cn.bing.com": {
+      method: "GET",
+      url: "https://cn.bing.com"
+    },
+    "sina.com": {
+      method: "GET",
+      url: "http://sina.com"
+    }
+  })
+);
+```
+
+#### Series
+
+```javascript
+var xhr = new XMLHttpRequest();
+
+xhr.open("POST", "https://go-http-combiner.herokuapp.com");
+
+xhr.onreadystatechange = function(e) {
+  console.log(e);
+};
+
+xhr.send(
+  JSON.stringify([
+    {
+      method: "GET",
+      url: "https://www.baidu.com"
+    },
+    {
+      method: "GET",
+      url: "https://cn.bing.com"
+    },
+    {
+      method: "GET",
+      url: "http://sina.com"
+    }
+  ])
+);
+```
 
 ## Contributing
 
